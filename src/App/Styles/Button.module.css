@@ -1,0 +1,22 @@
+.mainWrap , .active{
+    border-radius: 20px;
+    padding: 5px 10px;
+    border:2px solid  white;
+    background-color:transparent;
+    color:#ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 20px;
+}
+.active{ 
+    background-color:#ffffff;
+    color:#000000
+}
+
+.mainWrap:hover{
+    background-color:#ffffff;
+    color:#000000
+}
+.mainWrap:last-child{
+    margin-right: 0px;
+}

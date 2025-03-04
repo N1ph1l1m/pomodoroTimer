@@ -1,0 +1,6 @@
+.mainWrap{
+    width: 100vw;
+    height: 100vH;
+    display: flex;
+    align-items: center;
+}
