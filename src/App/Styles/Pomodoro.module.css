@@ -9,7 +9,7 @@
 }
 
 .pomodoroContainerWrap{
-    
+
     /* border:1px solid red; */
     margin: 0px auto;
     display: flex;
@@ -19,20 +19,22 @@
 
 }
 .header{
-    margin-bottom: 20px;
+    margin-bottom: 35px;
 }
 
 .timer{
-    font-size: 72px;
-    font-weight: 800;
+    font-size: 128px;
+    font-weight: 600;
     color: #ffffff;
+    font-family: 'SpaceGrotesk', sans-serif;
 }
 .footer{
-  border:1px solid red;
+  /* border:1px solid red; */
   height: 50px;
   width: 200px;
   display: flex;
   flex-direction: row;
   align-items:center;
   justify-content: space-around;
+  margin-top: 35px;
 }
