@@ -1,5 +1,6 @@
 import styles from "../../App/Styles/MainPage.module.css"
 import { Pomodoro } from "../../Widgets/Pomodoro/Pomodoro"
+import { SettingModal } from "../../Widgets/SettingModal/SettingModal";
 import wallpaper from "../../App/Images/696808930.jpg"
 import wallpaper2 from "../../App/Images/88399139.jpg";
 export const MainPage = () =>{
@@ -8,6 +9,7 @@ export const MainPage = () =>{
         <div className={styles.mainWrap}
             style={{backgroundImage:`url(${wallpaper2})`}}>
             <Pomodoro/>
+            {/* <SettingModal/> */}
         </div>
          </>
         )

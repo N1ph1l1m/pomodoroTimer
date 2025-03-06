@@ -1,0 +1,25 @@
+.mainWrap{
+    padding: 5px;
+    min-width: 60px;
+    display: flex;
+    flex-direction: column;
+
+}
+.inputNumber{
+   width: 70px;
+   background-color:transparent;
+   padding: 5px;
+   border:1px solid white;
+   color:#ffffff;
+   font-size: 16px;
+   border-radius:5px;
+   margin: 10px 0px 5px ;
+
+}
+.titleTimer{
+    font-size: 20px;
+}
+.mainWrap >span{
+    color:gray;
+
+}

@@ -19,8 +19,17 @@
 
 }
 .header{
+    max-width: 500px;
     margin-bottom: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+
 }
+.countPomodoro{
+margin-bottom: 20px;
+}
+
 
 .timer{
     font-size: 128px;

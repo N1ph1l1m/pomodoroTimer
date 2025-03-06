@@ -1,8 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-
-
+import buttonState from "./Slice/ButtonState/ButtonState"
+import  pomodoroTimer  from "./Slice/timerSlice/timerSlice";
 const store = configureStore({
-    reducer:{}
+    reducer:{
+        buttonState:buttonState,
+        pomodoroTimer:pomodoroTimer,
+
+
+    }
 });
 
 export type RootState = ReturnType<typeof store.getState>

@@ -1,19 +1,59 @@
+import { RootState } from "../../Store/index";
 import { useEffect, useState, useRef } from "react";
 import styles from "../../App/Styles/Pomodoro.module.css";
 import { Button } from "../../Shared/Button/Button";
 import { IoSettingsSharp } from "react-icons/io5";
 import { RiResetRightFill } from "react-icons/ri";
+import { useSelector, useDispatch } from "react-redux";
+import { TbPointFilled } from "react-icons/tb";
+import { activePomodoro,activeShortBreak,activeLongBreak } from "../../Store/Slice/ButtonState/ButtonState";
+
 
 export const Pomodoro = () => {
-    const timer  = {
-        min: 5,
-        sec:0
+
+
+    const  [pomodoroCount,setPomodoroCount] = useState(0)
+    const intervalRef:React.RefObject<number|undefined>= useRef(undefined);
+
+    const buttonState = useSelector((state:RootState)=>state.buttonState.buttonState)
+     const {pomodoro, short, long } = useSelector((state:RootState)=>state.pomodoroTimer.timer)
+
+
+    const [minutes, setMinutes] = useState(pomodoro.minutes);
+    const [seconds, setSeconds] = useState(pomodoro.second);
+
+    const [isTimer, setTimer] = useState(false);
+
+    const dispatch = useDispatch();
+
+
+    const pomodoroActive = () => dispatch(activePomodoro())
+    const shortActive  = ()=> dispatch(activeShortBreak())
+    const longActive = () => dispatch(activeLongBreak())
+
+
+    function toggleTimer():void{
+        switch(buttonState){
+            case "pomodoro":
+               setMinutes(pomodoro.minutes);
+               setSeconds(pomodoro.second);
+            break;
+            case "short":
+                setMinutes(short.minutes);
+                setSeconds(short.second);
+            break;
+            case "long":
+                setMinutes(long.minutes);
+                setSeconds(long.second);
+            break;
+            default:
+                alert("Ошибка ButtonState null")
+        }
     }
 
-    const [seconds, setSeconds] = useState(timer.sec);
-    const [minutes, setMinutes] = useState(timer.min);
-    const [isTimer, setTimer] = useState(false);
-    const intervalRef:React.RefObject<number|undefined>= useRef(undefined);
+    useEffect(()=>{
+      toggleTimer()
+},[buttonState])
 
     useEffect(() => {
         if (isTimer) {
@@ -32,10 +72,27 @@ export const Pomodoro = () => {
                     return prevMinutes;
                 });
                 if(minutes===0 && seconds === 0 ){
-                    clearInterval(intervalRef.current);
-                    setTimer(false)
-                    setMinutes(timer.min);
-                    setSeconds(timer.sec)
+                    if(pomodoroCount < 4){
+                        if(buttonState=== "pomodoro"){
+                            shortActive()
+                            setPomodoroCount((p) => p +1 )
+                        }else if(buttonState === "short"){
+                            pomodoroActive()
+                        }else{
+                            return false
+                        }
+                    }else if(pomodoroCount === 4){
+                        longActive()
+                        setMinutes(long.minutes);
+                        setSeconds(long.second);
+                        setPomodoroCount(pomodoroCount +1 )
+
+                    }else{
+                        pomodoroActive()
+                        clearInterval(intervalRef.current);
+                        setTimer(false)
+                        setPomodoroCount(0)
+                    }
                 }
             }, 1000);
         } else {
@@ -45,27 +102,33 @@ export const Pomodoro = () => {
         return () => clearInterval(intervalRef.current);
     }, [isTimer, seconds, minutes]);
 
-    function start() {
-        setTimer(true);
-    }
-
-    function stop() {
-        setTimer(false);
-    }
 
     function reset() {
         setTimer(false);
-        setMinutes(timer.min);
-        setSeconds(timer.sec)
+        toggleTimer()
     }
+
 
     return (
         <div className={styles.mainWrap}>
             <div className={styles.pomodoroContainerWrap}>
                 <div className={styles.header}>
-                    <Button active name="pomodoro" />
-                    <Button name="short break" />
-                    <Button name="long break" />
+
+                    <div className={styles.countPomodoro}>
+                    {Array.from({ length: 4 }).map((_, index) => (
+                    <TbPointFilled
+                    key={index}
+                    size="30"
+                    color={index < pomodoroCount ? "white" : "gray"}
+                />
+                ))}
+                    </div>
+                    <div>
+                    <Button  active={ buttonState === "pomodoro"  ? true :false }  name="pomodoro"  onClick={()=>pomodoroActive()} />
+                    <Button active={ buttonState === "short"  ? true :false } name="short break" onClick={()=>shortActive()} />
+                    <Button active={ buttonState === "long"  ? true :false } name="long break"  onClick={()=>longActive()}/>
+                    </div>
+
                 </div>
                 <div className={styles.time}>
                     <h1 className={styles.timer}>
@@ -76,7 +139,7 @@ export const Pomodoro = () => {
                 <div className={styles.footer}>
                     <Button active
                         name={!isTimer ? "start" : "stop"}
-                        onClick={() => (!isTimer ? start() : stop())}
+                        onClick={() => (!isTimer ? setTimer(true) :   setTimer(false) )}
                         style={{fontSize:"24px"}} />
                     <RiResetRightFill onClick={reset} style={{ cursor: "pointer" }} size="40" color="#ffffff" />
                     <IoSettingsSharp style={{ cursor: "pointer" }} size="40" color="#ffffff" />
