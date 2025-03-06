@@ -36,3 +36,9 @@
     min-height: 300px;
     color:#ffffff
 }
+.footer{
+    
+    width: 100%;
+display: flex;
+justify-content: space-between;
+}

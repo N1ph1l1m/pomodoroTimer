@@ -7,7 +7,7 @@ import { RiResetRightFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 import { TbPointFilled } from "react-icons/tb";
 import { activePomodoro,activeShortBreak,activeLongBreak } from "../../Store/Slice/ButtonState/ButtonState";
-
+import { showSetting } from "../../Store/Slice/SettingSlice/SettingSlice";
 
 export const Pomodoro = () => {
 
@@ -16,7 +16,7 @@ export const Pomodoro = () => {
     const intervalRef:React.RefObject<number|undefined>= useRef(undefined);
 
     const buttonState = useSelector((state:RootState)=>state.buttonState.buttonState)
-     const {pomodoro, short, long } = useSelector((state:RootState)=>state.pomodoroTimer.timer)
+    const {pomodoro, short, long } = useSelector((state:RootState)=>state.pomodoroTimer.timer)
 
 
     const [minutes, setMinutes] = useState(pomodoro.minutes);
@@ -30,6 +30,8 @@ export const Pomodoro = () => {
     const pomodoroActive = () => dispatch(activePomodoro())
     const shortActive  = ()=> dispatch(activeShortBreak())
     const longActive = () => dispatch(activeLongBreak())
+    const settingOn = () => dispatch(showSetting())
+
 
 
     function toggleTimer():void{
@@ -142,7 +144,7 @@ export const Pomodoro = () => {
                         onClick={() => (!isTimer ? setTimer(true) :   setTimer(false) )}
                         style={{fontSize:"24px"}} />
                     <RiResetRightFill onClick={reset} style={{ cursor: "pointer" }} size="40" color="#ffffff" />
-                    <IoSettingsSharp style={{ cursor: "pointer" }} size="40" color="#ffffff" />
+                    <IoSettingsSharp onClick={settingOn} style={{ cursor: "pointer" }} size="40" color="#ffffff" />
                 </div>
             </div>
         </div>

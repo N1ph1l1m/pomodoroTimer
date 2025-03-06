@@ -15,10 +15,20 @@
     color:#000000
 }
 
-.mainWrap:hover{
-    background-color:#ffffff;
-    color:#000000
+.reset{
+    background-color:red;
+    border:2px solid  red;
 }
-.mainWrap:last-child{
-    margin-right: 0px;
+.close{
+    background-color:gray;
+    border:2px solid  gray;
+    color:#ffffff;
+}
+.close:hover{
+    border:2px solid  white ;
+    background-color:gray;
+}
+
+.reset:hover{
+    border:2px solid  white ;
 }
