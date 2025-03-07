@@ -1,9 +1,11 @@
 import styles from "../../App/Styles/InputNumber.module.css"
 
 interface IinputNumber{
-    name:string
+    name:string,
+    value:number,
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
 }
-export const InputNumber = ({name}:IinputNumber) => {
+export const InputNumber = ({name,value,onChange}:IinputNumber) => {
     return(
         <>
         <div className={styles.mainWrap}>
@@ -15,12 +17,11 @@ export const InputNumber = ({name}:IinputNumber) => {
         <input
                 id="inputNum"
                 className={styles.inputNumber}
-                value="25"
-                type="number" />
+                value={value}
+                type="number"
+                onChange={onChange} />
         <span >minutes</span>
         </div>
-
-
         </>
 
     )

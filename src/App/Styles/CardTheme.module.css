@@ -1,0 +1,19 @@
+.mainWrap{
+    border:1px solid #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius:5px;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.mainWrap:last-child{
+    margin-right: 0px;
+}
+.iconCard{
+    width: 25px;
+    height: 25px;
+    margin: 0 auto;
+}

@@ -21,16 +21,16 @@ interface ITimer {
 const initialState: ITimer = {
     timer: {
         pomodoro:{
-            minutes: 0,
-            second: 2,
+            minutes: 25,
+            second: 0,
         },
         short:{
-            minutes:0,
-            second:3,
+            minutes:5,
+            second:0,
         },
         long:{
-            minutes:0,
-            second:10,
+            minutes:10,
+            second:0,
         }
 
     }
@@ -40,19 +40,19 @@ const timerSlice = createSlice({
     name:"timer",
     initialState,
     reducers:{
-        pomodoroTimer(state, actions:PayloadAction<{minutes:number,second:number}>) {
-            state.timer.pomodoro.minutes = actions.payload.minutes;
-            state.timer.pomodoro.second = actions.payload.second;
+        pomodoroTimerMin(state,actions:PayloadAction<number>) {
+            state.timer.pomodoro.minutes = actions.payload;
+
         },
-        pomodoroShortBreak(state, actions:PayloadAction<{minutes:number,second:number}>) {
-            state.timer.short.minutes = actions.payload.minutes;
-            state.timer.short.second = actions.payload.second;
+        shortTimerMin(state,actions:PayloadAction<number>) {
+            state.timer.short.minutes = actions.payload;
+
         },
-        pomodoroLongBreak(state, actions:PayloadAction<{minutes:number,second:number}>) {
-            state.timer.long.minutes = actions.payload.minutes;
-            state.timer.long.second = actions.payload.second;
-        }
+        longTimerMin(state,actions:PayloadAction<number>) {
+            state.timer.long.minutes = actions.payload;
+
+        },
     }
 })
-export const {pomodoroTimer, pomodoroShortBreak,pomodoroLongBreak} = timerSlice.actions;
+export const {pomodoroTimerMin,shortTimerMin,longTimerMin} = timerSlice.actions;
 export default timerSlice.reducer;

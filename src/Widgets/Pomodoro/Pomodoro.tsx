@@ -33,8 +33,7 @@ export const Pomodoro = () => {
     const settingOn = () => dispatch(showSetting())
 
 
-
-    function toggleTimer():void{
+function toggleTimer():void{
         switch(buttonState){
             case "pomodoro":
                setMinutes(pomodoro.minutes);
@@ -55,9 +54,9 @@ export const Pomodoro = () => {
 
     useEffect(()=>{
       toggleTimer()
-},[buttonState])
+},[buttonState,pomodoro.minutes,short.minutes,long.minutes])
 
-    useEffect(() => {
+useEffect(() => {
         if (isTimer) {
             intervalRef.current = setInterval(() => {
                 setSeconds((prevSeconds) => {
@@ -102,13 +101,13 @@ export const Pomodoro = () => {
         }
 
         return () => clearInterval(intervalRef.current);
-    }, [isTimer, seconds, minutes]);
+}, [isTimer, seconds, minutes]);
 
 
-    function reset() {
+function reset() {
         setTimer(false);
         toggleTimer()
-    }
+}
 
 
     return (
