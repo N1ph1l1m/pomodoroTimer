@@ -1,9 +1,9 @@
 .mainWrap{
+ width: 100%;
 }
 .header{
     overflow-x: auto ;
     width: 100%;
-    /* border:1px solid white; */
     display: flex;
     flex-wrap: nowrap;
 

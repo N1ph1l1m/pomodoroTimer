@@ -5,9 +5,11 @@
     transform: translate(-50%, -50%);
     min-width: 300px ;
     min-height: 100px;
+    
     background-color:black;
     border-radius:10px;
     padding: 20px;
+    z-index: 1;
 }
 .menuTitle{
     font-size: 18px;
@@ -32,7 +34,8 @@
 
 }
 .settingWrap{
-    width: 400px;
+    width: 480px;
+    
     min-height: 300px;
     color:#ffffff
 }

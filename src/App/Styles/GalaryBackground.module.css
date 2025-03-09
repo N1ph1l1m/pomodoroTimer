@@ -1,0 +1,19 @@
+.mainWrap{
+    width: 100%;
+    height: 100%;
+    /* border:1px solid red; */
+}
+
+.wrapItems{
+    width: 100%;
+    /* border:1px solid green; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 10px;
+}
+.backgroundApp{
+    width: 150px;
+    height: 150px ;    
+}

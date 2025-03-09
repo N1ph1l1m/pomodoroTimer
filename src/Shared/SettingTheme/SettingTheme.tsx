@@ -1,34 +1,41 @@
 import styles from "../../App/Styles/SettingTheme.module.css"
+import { useSelector,useDispatch } from "react-redux"
+import { RootState } from "../../Store"
 import { CardTheme } from "../CardTheme/CardTheme"
-import nature from "../../App/Images/nature.png"
-import cafe from "../../App/Images/cafe.png"
-import windows from "../../App/Images/window.png";
-import city from "../../App/Images/city.png"
-import code from "../../App/Images/code.png"
-import books from "../../App/Images/books.png"
-import space from "../../App/Images/space.png"
-import winter from "../../App/Images/winter.png"
+import { setTheme } from "../../Store/Slice/BackgroundApp/BackgroundApp"
+import nature from "../../App/Icon/nature.png"
+import cafe from "../../App/Icon/cafe.png"
+import windows from "../../App/Icon/window.png";
+import city from "../../App/Icon/city.png"
+import code from "../../App/Icon/code.png"
+import books from "../../App/Icon/books.png"
+import space from "../../App/Icon/space.png"
+import winter from "../../App/Icon/winter.png"
+import { GalaryBackground } from "../GalaryBackground/GalaryBackground";
+
+
 export const SettingTheme = () => {
+    const dispatch = useDispatch();
+
+    const themeSelect =  useSelector((state:RootState)=>state.backgroundApp.theme.name)
+
     return(
     <>
         <div className={styles.mainWrap}>
         <div className={styles.header}>
-            <CardTheme src={nature} alt={"nature"}/>
-            <CardTheme src={cafe} alt={"cafe"}/>
-            <CardTheme src={windows} alt={"windows"}/>
-            <CardTheme src={city} alt={"city"}/>
-            <CardTheme src={code} alt={"code"}/>
-            <CardTheme src={books} alt={"books"}/>
-            <CardTheme src={space} alt={"space"}/>
-            <CardTheme src={winter} alt={"winter"}/>
-
-
-
-
-
-
-
+            <CardTheme onClick={()=>dispatch(setTheme({name:"nature"}))} src={nature} alt={"nature"}/>
+            <CardTheme onClick={()=>dispatch(setTheme({name:"cage"}))} src={cafe} alt={"cafe"}/>
+            <CardTheme onClick={()=>dispatch(setTheme({name:"window"}))} src={windows} alt={"windows"}/>
+            <CardTheme onClick={()=>dispatch(setTheme({name:"city"}))} src={city} alt={"city"}/>
+            <CardTheme onClick={()=>dispatch(setTheme({name:"code"}))} src={code} alt={"code"}/>
+            <CardTheme onClick={()=>dispatch(setTheme({name:"books"}))} src={books} alt={"books"}/>
+            <CardTheme onClick={()=>dispatch(setTheme({name:"space"}))} src={space} alt={"space"}/>
+            <CardTheme onClick={()=>dispatch(setTheme({name:"winter"}))} src={winter} alt={"winter"}/>
         </div>
+        <div className={styles.galary}>
+            <GalaryBackground theme={themeSelect}/>
+        </div>
+     
         </div>
     </>)
 }
