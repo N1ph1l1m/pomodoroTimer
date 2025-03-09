@@ -21,12 +21,12 @@ interface ITimer {
 const initialState: ITimer = {
     timer: {
         pomodoro:{
-            minutes: 25,
-            second: 0,
+            minutes:0 ,
+            second: 3,
         },
         short:{
-            minutes:5,
-            second:0,
+            minutes:0,
+            second:5,
         },
         long:{
             minutes:10,

@@ -11,6 +11,7 @@ import code from "../../App/Icon/code.png"
 import books from "../../App/Icon/books.png"
 import space from "../../App/Icon/space.png"
 import winter from "../../App/Icon/winter.png"
+import anime from "../../App/Icon/anime.png"
 import { GalaryBackground } from "../GalaryBackground/GalaryBackground";
 
 
@@ -24,7 +25,8 @@ export const SettingTheme = () => {
         <div className={styles.mainWrap}>
         <div className={styles.header}>
             <CardTheme onClick={()=>dispatch(setTheme({name:"nature"}))} src={nature} alt={"nature"}/>
-            <CardTheme onClick={()=>dispatch(setTheme({name:"cage"}))} src={cafe} alt={"cafe"}/>
+            <CardTheme onClick={()=>dispatch(setTheme({name:"cafe"}))} src={cafe} alt={"cafe"}/>
+            <CardTheme onClick={()=>dispatch(setTheme({name:"anime"}))} src={anime} alt={"anime"}/>
             <CardTheme onClick={()=>dispatch(setTheme({name:"window"}))} src={windows} alt={"windows"}/>
             <CardTheme onClick={()=>dispatch(setTheme({name:"city"}))} src={city} alt={"city"}/>
             <CardTheme onClick={()=>dispatch(setTheme({name:"code"}))} src={code} alt={"code"}/>

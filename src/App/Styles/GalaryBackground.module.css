@@ -1,19 +1,40 @@
 .mainWrap{
     width: 100%;
     height: 100%;
-    /* border:1px solid red; */
+    padding: 0px;
+    margin: 0px;
 }
 
 .wrapItems{
+
     width: 100%;
-    /* border:1px solid green; */
+    height: 300px;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
     flex-wrap: wrap;
+    flex-direction: row;
     gap: 10px 10px;
+    overflow: hidden;
+    overflow-y: auto;
 }
+::-webkit-scrollbar {
+    width: 4px;
+    height:5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 .backgroundApp{
     width: 150px;
-    height: 150px ;    
+    height: 84px; 
+    margin-bottom: -10px;
+    padding: 0px;   
 }

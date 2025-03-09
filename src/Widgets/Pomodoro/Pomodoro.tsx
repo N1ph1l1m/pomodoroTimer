@@ -12,7 +12,7 @@ import { showSetting } from "../../Store/Slice/SettingSlice/SettingSlice";
 export const Pomodoro = () => {
 
 
-    const  [pomodoroCount,setPomodoroCount] = useState(0)
+    const  [pomodoroCount,setPomodoroCount] = useState(3)
     const intervalRef:React.RefObject<number|undefined>= useRef(undefined);
 
     const buttonState = useSelector((state:RootState)=>state.buttonState.buttonState)
