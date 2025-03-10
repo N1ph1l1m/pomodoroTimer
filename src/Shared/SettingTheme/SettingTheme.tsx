@@ -30,14 +30,13 @@ export const SettingTheme = () => {
             <CardTheme onClick={()=>dispatch(setTheme({name:"window"}))} src={windows} alt={"windows"}/>
             <CardTheme onClick={()=>dispatch(setTheme({name:"city"}))} src={city} alt={"city"}/>
             <CardTheme onClick={()=>dispatch(setTheme({name:"code"}))} src={code} alt={"code"}/>
-            <CardTheme onClick={()=>dispatch(setTheme({name:"books"}))} src={books} alt={"books"}/>
+            <CardTheme onClick={()=>dispatch(setTheme({name:"study"}))} src={books} alt={"books"}/>
             <CardTheme onClick={()=>dispatch(setTheme({name:"space"}))} src={space} alt={"space"}/>
-            <CardTheme onClick={()=>dispatch(setTheme({name:"winter"}))} src={winter} alt={"winter"}/>
         </div>
         <div className={styles.galary}>
             <GalaryBackground theme={themeSelect}/>
         </div>
-     
+
         </div>
     </>)
 }

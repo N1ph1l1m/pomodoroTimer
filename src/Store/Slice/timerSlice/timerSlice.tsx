@@ -22,11 +22,11 @@ const initialState: ITimer = {
     timer: {
         pomodoro:{
             minutes:0 ,
-            second: 3,
+            second: 10,
         },
         short:{
             minutes:0,
-            second:5,
+            second:10,
         },
         long:{
             minutes:10,

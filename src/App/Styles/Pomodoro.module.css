@@ -38,6 +38,35 @@ margin-bottom: 20px;
     color: #ffffff;
     font-family: 'SpaceGrotesk', sans-serif;
 }
+.timerPulse{
+    font-size: 128px;
+    font-weight: 600;
+    color: #ff0000;
+    /* animation-name: pulseTimer ;
+    animation-duration: 5s; */
+    animation: pulseTimer 2s infinite ease-in-out;
+
+}
+
+
+@keyframes pulseTimer {
+
+    0% {
+        transform: scale(0.9);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.9);
+    }
+
+}.timer{
+    font-size: 128px;
+    font-weight: 600;
+    color: #ffffff;
+    font-family: 'SpaceGrotesk', sans-serif;
+}
 .footer{
   /* border:1px solid red; */
   height: 50px;

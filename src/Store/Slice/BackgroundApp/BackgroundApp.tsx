@@ -1,5 +1,5 @@
 import { createSlice,PayloadAction } from "@reduxjs/toolkit"
-import backgroundDefault from "../../../App/Images/background/static/2.jpg"
+import backgroundDefault from "../../../App/Images/background/static/nature/2.jpg"
 
 interface IBackground{
     theme:{

@@ -34,7 +34,30 @@
 
 .backgroundApp{
     width: 150px;
-    height: 84px; 
+    height: 84px;
     margin-bottom: -10px;
-    padding: 0px;   
+    padding: 0px;
+    position: relative;
+
+}
+
+.wrapLive{
+    position: absolute;
+    width: 55px;
+    height: 20px;
+
+    right: 10px;
+    top:5px;
+    z-index: 1;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+.wrapDinamic{
+    position: relative;
+}
+.wrapLive span{
+    font-size: 12px;
+    margin-left: 5px;
 }

@@ -12,7 +12,7 @@ import { showSetting } from "../../Store/Slice/SettingSlice/SettingSlice";
 export const Pomodoro = () => {
 
 
-    const  [pomodoroCount,setPomodoroCount] = useState(3)
+    const  [pomodoroCount,setPomodoroCount] = useState(0)
     const intervalRef:React.RefObject<number|undefined>= useRef(undefined);
 
     const buttonState = useSelector((state:RootState)=>state.buttonState.buttonState)
@@ -132,7 +132,7 @@ function reset() {
 
                 </div>
                 <div className={styles.time}>
-                    <h1 className={styles.timer}>
+                    <h1 className={ minutes===0 && seconds <= 5    ?  styles.timerPulse : styles.timer }>
                         {minutes < 10 ? "0" + minutes : minutes}:
                         {seconds === 60 ||  seconds === 0   ? "00" : seconds && seconds < 10   ? "0" + seconds : seconds}
                     </h1>
