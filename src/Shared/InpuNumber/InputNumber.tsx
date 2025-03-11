@@ -15,6 +15,8 @@ export const InputNumber = ({name,value,onChange}:IinputNumber) => {
 
         </label>
         <input
+                min={1}
+                max={60}
                 id="inputNum"
                 className={styles.inputNumber}
                 value={value}
