@@ -1,6 +1,9 @@
 import { createSlice,PayloadAction } from "@reduxjs/toolkit"
 import backgroundDefault from "../../../App/Images/background/static/nature/2.jpg"
 
+const  local = localStorage.getItem('type')
+const  localTheme = localStorage.getItem('theme')
+
 interface IBackground{
     theme:{
         name:string
@@ -11,13 +14,15 @@ interface IBackground{
         }
 }
 
+
+
 const initialState:IBackground = {
     theme:{
         name:"nature"
     },
     background:{
-        type:"static",
-        url:`${backgroundDefault}`
+        type: local ? local : 'static',
+        url: localTheme ?  localTheme : backgroundDefault
     }
 }
 export const backgroundApp = createSlice({
@@ -27,6 +32,9 @@ export const backgroundApp = createSlice({
         setBackground(state,action:PayloadAction<{type:string;url:string}>){
                     state.background.type = action.payload.type;
                     state.background.url = action.payload.url
+                    localStorage.setItem("type", action.payload.type)
+                    localStorage.setItem("theme", action.payload.url)
+
         },
         setDefault(state){
             state.background.type = initialState.background.type

@@ -17,3 +17,10 @@
     height: 25px;
     margin: 0 auto;
 }
+
+
+@media screen and (max-width:490px) {
+    .mainWrap{
+        margin: 3px 0px;
+    }
+}

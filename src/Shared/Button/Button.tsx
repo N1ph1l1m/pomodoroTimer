@@ -7,19 +7,19 @@ interface IButton{
     close?:boolean,
     onClick?:React.MouseEventHandler<HTMLButtonElement>,
     style?:React.CSSProperties,
-    newClassName?:React.HTMLAttributes<HTMLButtonElement>,
+    newClassName?: React.HTMLAttributes<HTMLButtonElement>;
 }
 
 export const Button = ({ name, active, reset, close , onClick, style, newClassName }: IButton) => {
     const buttonClass = classNames(
-        styles.mainWrap, 
+        styles.mainWrap,
         {
-            [styles.active]: active, 
-            [styles.reset]: reset,  
+            [styles.active]: active,
+            [styles.reset]: reset,
             [styles.close]: close,
-              
+
         },
-        newClassName 
+        newClassName
     );
 
     return (

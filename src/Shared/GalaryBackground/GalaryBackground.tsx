@@ -10,14 +10,17 @@ interface GalaryBackgroundProps {
   theme: string;
 }
 
+interface IBackgroundItem {
+  type: string; // тип фона
+  url: string; // URL изображения или видео
+  prewiew?: string; // URL для предварительного просмотра, доступно для динамического фона
+}
+
 export const GalaryBackground = ({ theme }: GalaryBackgroundProps) => {
   const themeItem = dataBackground[theme] || [];
   const dispatch = useDispatch();
 
-
-
-
-  const handleClick = useCallback((item) => {
+  const handleClick = useCallback((item:IBackgroundItem)=> {
     dispatch(setBackground({ type: item.type, url: item.url }));
   }, [dispatch]);
 

@@ -42,8 +42,6 @@ margin-bottom: 20px;
     font-size: 128px;
     font-weight: 600;
     color: #ff0000;
-    /* animation-name: pulseTimer ;
-    animation-duration: 5s; */
     animation: pulseTimer 2s infinite ease-in-out;
 
 }
@@ -77,3 +75,46 @@ margin-bottom: 20px;
   justify-content: space-around;
   margin-top: 35px;
 }
+
+
+@media screen and  (max-width:470px) {
+    .wrapButton{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:center;
+        gap:10px
+    }
+}
+
+
+@media screen and  (max-width:470px) {
+    .wrapButton{
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:center;
+        gap:10px
+    }
+}
+
+@media screen and  (max-width:330px) {
+   .timer{
+    font-size: 90px;
+   }
+   .timerPulse{
+    font-size: 90px;
+   }
+}
+
+
+@media screen and  (max-width:225px) {
+    .timer{
+     font-size: 70px;
+    }
+    .timerPulse{
+        font-size: 70px;
+       }
+
+ }

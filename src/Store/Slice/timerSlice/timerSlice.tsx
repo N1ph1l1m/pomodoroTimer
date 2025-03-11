@@ -1,8 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+import  audioDef from "../../../App/Audio/defaultSound.mp3"
+
 
 interface ITimer {
     timer:{
+        pomodoroSound:string,
+        pomodoroCount:number,
+        isAudioPlaying: boolean,
         pomodoro:{
             minutes:number;
             second:number;
@@ -20,6 +25,9 @@ interface ITimer {
 
 const initialState: ITimer = {
     timer: {
+        pomodoroSound: audioDef,
+        pomodoroCount:0,
+        isAudioPlaying: false,
         pomodoro:{
             minutes:0 ,
             second: 10,
@@ -52,7 +60,19 @@ const timerSlice = createSlice({
             state.timer.long.minutes = actions.payload;
 
         },
+        setCount(state){
+            state.timer.pomodoroCount++
+        },
+        resetCount(state){
+            state.timer.pomodoroCount = 0
+        },
+        playAudio(state){
+            state.timer.isAudioPlaying = true;
+        },
+        pauseAudio(state){
+            state.timer.isAudioPlaying = false;
+        }
     }
 })
-export const {pomodoroTimerMin,shortTimerMin,longTimerMin} = timerSlice.actions;
+export const {pomodoroTimerMin,shortTimerMin,longTimerMin,setCount,resetCount,pauseAudio,playAudio} = timerSlice.actions;
 export default timerSlice.reducer;

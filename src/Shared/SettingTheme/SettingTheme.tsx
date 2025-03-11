@@ -10,7 +10,6 @@ import city from "../../App/Icon/city.png"
 import code from "../../App/Icon/code.png"
 import books from "../../App/Icon/books.png"
 import space from "../../App/Icon/space.png"
-import winter from "../../App/Icon/winter.png"
 import anime from "../../App/Icon/anime.png"
 import { GalaryBackground } from "../GalaryBackground/GalaryBackground";
 

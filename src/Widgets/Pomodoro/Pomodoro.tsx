@@ -7,14 +7,10 @@ import { RiResetRightFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 import { TbPointFilled } from "react-icons/tb";
 import { activePomodoro,activeShortBreak,activeLongBreak } from "../../Store/Slice/ButtonState/ButtonState";
+import { setCount,resetCount , playAudio,pauseAudio } from "../../Store/Slice/timerSlice/timerSlice";
 import { showSetting } from "../../Store/Slice/SettingSlice/SettingSlice";
-
 export const Pomodoro = () => {
-
-
-    const  [pomodoroCount,setPomodoroCount] = useState(0)
     const intervalRef:React.RefObject<number|undefined>= useRef(undefined);
-
     const buttonState = useSelector((state:RootState)=>state.buttonState.buttonState)
     const {pomodoro, short, long } = useSelector((state:RootState)=>state.pomodoroTimer.timer)
 
@@ -23,10 +19,18 @@ export const Pomodoro = () => {
     const [seconds, setSeconds] = useState(pomodoro.second);
 
     const [isTimer, setTimer] = useState(false);
+    const {pomodoroCount  , pomodoroSound, isAudioPlaying}= useSelector((state:RootState)=> state.pomodoroTimer.timer)
+    const audioRef = useRef(new Audio(pomodoroSound))
+
 
     const dispatch = useDispatch();
 
+    const setCountPomodoro = () =>  dispatch(setCount())
+    const resetCountPomodoro = () =>  dispatch(resetCount())
 
+
+    const playAudioPomodoro = () => dispatch(playAudio())
+    const pauseAudioPomodoro = () => dispatch(pauseAudio())
     const pomodoroActive = () => dispatch(activePomodoro())
     const shortActive  = ()=> dispatch(activeShortBreak())
     const longActive = () => dispatch(activeLongBreak())
@@ -56,51 +60,76 @@ function toggleTimer():void{
       toggleTimer()
 },[buttonState,pomodoro.minutes,short.minutes,long.minutes])
 
+
 useEffect(() => {
-        if (isTimer) {
-            intervalRef.current = setInterval(() => {
-                setSeconds((prevSeconds) => {
-                    if (prevSeconds === 0) {
-                        return 59;
-                    }
-                    return prevSeconds - 1;
-                });
+    // Если audio должен проигрываться, воспроизводим
+    if (isAudioPlaying) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
 
-                setMinutes((prevMinutes) => {
-                    if (seconds === 0 && prevMinutes > 0) {
-                        return prevMinutes - 1;
-                    }
-                    return prevMinutes;
-                });
-                if(minutes===0 && seconds === 0 ){
-                    if(pomodoroCount < 4){
-                        if(buttonState=== "pomodoro"){
-                            shortActive()
-                            setPomodoroCount((p) => p +1 )
-                        }else if(buttonState === "short"){
-                            pomodoroActive()
-                        }else{
-                            return false
-                        }
-                    }else if(pomodoroCount === 4){
-                        longActive()
-                        setMinutes(long.minutes);
-                        setSeconds(long.second);
-                        setPomodoroCount(pomodoroCount +1 )
+    return () => {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    };
+  }, [isAudioPlaying]);
 
-                    }else{
-                        pomodoroActive()
-                        clearInterval(intervalRef.current);
-                        setTimer(false)
-                        setPomodoroCount(0)
-                    }
+useEffect(() => {
+    if (isTimer) {
+        intervalRef.current = setInterval(() => {
+
+            setSeconds((prevSeconds) => {
+                if (prevSeconds === 0) {
+                    return 59;
                 }
-            }, 1000);
-        } else {
-            clearInterval(intervalRef.current);
-        }
+                return prevSeconds - 1;
+            });
 
-        return () => clearInterval(intervalRef.current);
+            setMinutes((prevMinutes) => {
+                if (seconds === 0 && prevMinutes > 0) {
+                    return prevMinutes - 1;
+                }
+                return prevMinutes;
+            });
+
+
+            if (minutes === 0 && seconds === 5) {
+                playAudioPomodoro()
+            }
+
+
+            if (minutes === 0 && seconds === 0) {
+                pauseAudioPomodoro()
+
+                if (pomodoroCount < 4) {
+                    if (buttonState === "pomodoro") {
+                        shortActive();
+                        setCountPomodoro()
+                    } else if (buttonState === "short") {
+                        pomodoroActive();
+                    } else {
+                        return false;
+                    }
+                } else if (pomodoroCount === 4) {
+                    longActive();
+                    setMinutes(long.minutes);
+                    setSeconds(long.second);
+                    setCountPomodoro()
+                } else {
+                    pomodoroActive();
+                    clearInterval(intervalRef.current);
+                    setTimer(false);
+                    resetCountPomodoro()
+                }
+            }
+        }, 1000);
+    } else {
+        clearInterval(intervalRef.current);
+    }
+
+    return () => clearInterval(intervalRef.current);
 }, [isTimer, seconds, minutes]);
 
 
@@ -124,7 +153,7 @@ function reset() {
                 />
                 ))}
                     </div>
-                    <div>
+                    <div className={styles.wrapButton}>
                     <Button  active={ buttonState === "pomodoro"  ? true :false }  name="pomodoro"  onClick={()=>pomodoroActive()} />
                     <Button active={ buttonState === "short"  ? true :false } name="short break" onClick={()=>shortActive()} />
                     <Button active={ buttonState === "long"  ? true :false } name="long break"  onClick={()=>longActive()}/>

@@ -39,9 +39,6 @@ export const SettingModal = () => {
                 setLong={(e)=>setLong(Number(e.target.value))}
             />)
       break;
-      case "sound":
-        return (<p>sound</p>)
-      break;
       case "theme":
         return (<SettingTheme/>)
         break;
@@ -55,7 +52,6 @@ export const SettingModal = () => {
           <div className={styles.leftMenu}>
             <ul>
               <li className={styles.menuTitle} onClick={()=> setMemuItem("timer")}>Timer</li>
-              <li className={styles.menuTitle} onClick={()=> setMemuItem("sound")} >Sound</li>
               <li className={styles.menuTitle} onClick={()=> setMemuItem("theme")} >Themes</li>
             </ul>
           </div>
@@ -65,10 +61,12 @@ export const SettingModal = () => {
 
         </div>
         <div className={styles.footer}>
-            <Button name="Reset "  reset />
-        <div>
-             <Button name="Close" close onClick={settingOff} active />
-             <Button name="Save"  active  onClick={()=>changeTimes()}/>
+          <div className={styles.buttonFooterWrap}>
+          <Button  name="Reset "  reset />
+          </div>
+        <div className={styles.buttonFooterWrap}>
+             <Button   name="Close" close onClick={settingOff} active />
+             <Button    name="Save"  active  onClick={()=>changeTimes()}/>
         </div>
 
           </div>
