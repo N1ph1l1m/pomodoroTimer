@@ -29,12 +29,12 @@ const initialState: ITimer = {
         pomodoroCount:0,
         isAudioPlaying: false,
         pomodoro:{
-            minutes:0 ,
-            second: 10,
+            minutes:25 ,
+            second: 0,
         },
         short:{
-            minutes:0,
-            second:10,
+            minutes:5,
+            second:0,
         },
         long:{
             minutes:10,
