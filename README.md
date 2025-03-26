@@ -12,8 +12,8 @@
 <ul>
   <p> 1. Clone the Repository</p>
   
-    git clone https://github.com/your-repository/todo-list.git
-    cd todo-list
+    git clone https://github.com/N1ph1l1m/pomodoroTimer
+    cd pomodoroTimer
     
   <p>2. Install Dependencies</p>
   
